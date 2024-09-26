@@ -37,7 +37,7 @@ all_cols = X_COLS + [Y_COL]
 for col in all_cols:
     if df[col].isna().any():
         print(f"Column '{col}' has missing values.")
-        median = df[col].median
+        median = df[col].median()
         df[col] = df[col].fillna(median)
 
 # export the modified dataset
