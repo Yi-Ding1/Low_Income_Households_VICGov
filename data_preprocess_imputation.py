@@ -9,7 +9,7 @@ Version: 1.0
 
 import pandas as pd
 
-df = pd.read_csv('communities.csv')
+df = pd.read_csv('communities.csv').drop_duplicates()
 
 # sum up the proportion of the elderly population
 elder_age_groups = [
