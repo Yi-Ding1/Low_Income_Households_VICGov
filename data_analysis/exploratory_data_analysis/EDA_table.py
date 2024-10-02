@@ -41,3 +41,4 @@ for col in cols:
     print(f"IQR: {round(iqr, DECIMALS)}")
     print(f"Number of Outliers: {len(outliers)}")
     print("-" * 50)
+
