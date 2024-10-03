@@ -1,3 +1,10 @@
+"""
+This program trains k-nn models that aim to
+predict the percentage of low income household.
+Author: Huiming Zhang
+Date: 03/10/2024
+"""
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -5,7 +12,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, accuracy_score
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import cross_val_score, StratifiedKFold
 
 # ======================
 # Step 1: Data Loading and Preprocessing
@@ -43,10 +50,7 @@ X = scaler.fit_transform(df[features])
 # ======================
 
 # Split data into training/validation (90%) and test (10%) sets
-X_train_valid, X_test, y_train_valid, y_test = train_test_split(X, target, test_size=0.1, random_state=123)
-
-# Further split the training/validation set into training (90%) and validation (10%) sets
-X_train, X_valid, y_train, y_valid = train_test_split(X_train_valid, y_train_valid, test_size=0.1, random_state=123)
+X_train, X_test, y_train, y_test = train_test_split(X, target, test_size=0.1, random_state=123, stratify=target)
 
 # ======================
 # Step 3: Model Training and Hyperparameter Tuning
@@ -59,10 +63,12 @@ k_values = list(range(1, 21))  # Range of k values to try for k-NN
 # Find the best k by training on the training set and validating on the validation set
 for k in k_values:
     model = KNeighborsClassifier(n_neighbors=k)
-    model.fit(X_train, y_train)
 
-    # Perform 10-fold cross-validation
-    cv_scores = cross_val_score(model, X_train, y_train, cv=10, scoring='accuracy')
+    # Uaw StratifiedKFold to split
+    stratified_kfold = StratifiedKFold(n_splits=9, shuffle=True, random_state=123)
+
+    # Apply cross validation to evaluate
+    cv_scores = cross_val_score(model, X_train, y_train, cv=stratified_kfold, scoring='accuracy')
 
     # Calculate mean accuracy over the 10 folds
     mean_cv_accuracy = np.mean(cv_scores)
@@ -78,13 +84,9 @@ print(f'Best k found: {best_k} with Validation Accuracy={best_accuracy:.4f}')
 # Step 4: Model Evaluation on Test Set
 # ======================
 
-# Retrain the model on the full training set (training + validation) using the best k
-X_train_full = np.concatenate((X_train, X_valid))
-y_train_full = np.concatenate((y_train, y_valid))
-
 # Train model with best k
 model = KNeighborsClassifier(n_neighbors=best_k)
-model.fit(X_train_full, y_train_full)
+model.fit(X_train, y_train)
 
 # Predict on the test set and evaluate the model's accuracy
 y_test_pred = model.predict(X_test)
@@ -107,3 +109,4 @@ plt.title("Confusion Matrix for Income Category Classification")
 plt.xlabel('Predicted Labels')
 plt.ylabel('True Labels')
 plt.show()
+
