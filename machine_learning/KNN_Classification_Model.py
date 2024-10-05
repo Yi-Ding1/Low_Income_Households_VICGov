@@ -64,7 +64,7 @@ k_values = list(range(1, 21))  # Range of k values to try for k-NN
 for k in k_values:
     model = KNeighborsClassifier(n_neighbors=k)
 
-    # Uaw StratifiedKFold to split
+    # Use StratifiedKFold to split
     stratified_kfold = StratifiedKFold(n_splits=9, shuffle=True, random_state=123)
 
     # Apply cross validation to evaluate
