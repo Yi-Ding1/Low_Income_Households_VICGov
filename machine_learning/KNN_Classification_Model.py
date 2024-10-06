@@ -8,6 +8,7 @@ Date: 03/10/2024
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.metrics import precision_score, recall_score, f1_score
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, accuracy_score
@@ -20,9 +21,6 @@ from sklearn.model_selection import cross_val_score, StratifiedKFold
 
 # Read CSV file
 df = pd.read_csv('communities_modified.csv')
-
-# Drop duplicate rows to clean the data
-df.drop_duplicates(inplace=True)
 
 # Define the bins and labels for categorizing income
 income_bins = [0, 20, 50, 100]  # Define bin edges
@@ -92,6 +90,20 @@ model.fit(X_train, y_train)
 y_test_pred = model.predict(X_test)
 test_accuracy = accuracy_score(y_test, y_test_pred)
 print(f'Test Accuracy: {test_accuracy:.4f}')
+
+precision = precision_score(y_test, y_test_pred, average=None)
+recall = recall_score(y_test, y_test_pred, average=None)
+f1 = f1_score(y_test, y_test_pred, average=None)
+
+# information regarding model performance on individual classes
+data = {
+    'Class': ['High', 'Low', 'Medium'],
+    'Recall': recall,
+    'Precision': precision,
+    'F1 Score': f1
+}
+accuracy_df = pd.DataFrame(data)
+print(accuracy_df)
 
 # ======================
 # Step 5: Confusion Matrix Visualization
