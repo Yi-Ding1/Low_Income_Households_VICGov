@@ -20,27 +20,28 @@ This project provides python code for:
 
 @Project structure
 
-                             |---| correlation_analysis |---| correlation_and_mu.py      # compute correlation and NMI
-         |---| data_analysis |
-         |                   |                               |---| histogram_plot.py     # plot histograms for features
-         |                   |---| exploratory_data_analysis |
-         |                                                   |---| statistics_table.py   # compute descriptive statistics
-Root |---|                       
-         |                      |---| Kmean_scatter_plot.py          # kmeans scatter plot visualization
-         |                      |
-         |                      |---| Kmean_with_PCA.py              # kmeans clustering with PCA dimnensionality reduction
-         |---| machine_learning |
-         |                      |---| KNN_Classification_Model.py    # KNN model training
-         |                      |
-         |                      |---| linear_regression.py           # linear regression model training
-         |
-         |---| communities_modified.csv      # the preprocessed communities data file
-         |
-         |---| communities.csv               # raw data for communities
-         |
-         |---| data_preprocess.py            # perform data preprocess (excluding normalization)
-         |
-         |---| run_all_tasks.py              # run all the .py files
+                        |---| correlation_analysis |---| correlation_and_mu.py      # compute correlation and NMI
+    |---| data_analysis |
+    |                   |                               |---| histogram_plot.py     # plot histograms for features
+    |                   |---| exploratory_data_analysis |
+    |                                                   |---| statistics_table.py   # compute descriptive statistics
+    |
+    |                      |---| Kmean_scatter_plot.py          # kmeans scatter plot visualization
+    |                      |
+    |                      |---| Kmean_with_PCA.py              # kmeans clustering with PCA dimnensionality reduction
+    |---| machine_learning |
+    |                      |---| KNN_Classification_Model.py    # KNN model training
+    |                      |
+    |                      |---| linear_regression.py           # linear regression model training
+    |
+    |---| communities_modified.csv      # the preprocessed communities data file
+    |
+    |---| communities.csv               # raw data for communities
+    |
+    |---| data_preprocess.py            # perform data preprocess (excluding normalization)
+    |
+    |---| run_all_tasks.py              # run all the .py files
+
 
 @Usage
 Require installation of Pandas, Sklearn, Numpy, Matplotlib, Seaborn.
