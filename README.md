@@ -1,9 +1,11 @@
 @Research question
+
 "Which attributes describing the levels of remoteness, education,
 disability and elderly population in a Victorian community reveal
 the most about its household income levels?"
 
 @Project overview
+
 This project provides python code for:
 - preprocess community data using data imputation, reshaping, remove duplicates...
 - computing statistics for individual features
@@ -44,6 +46,7 @@ This project provides python code for:
 
 
 @Usage
+
 Require installation of Pandas, Sklearn, Numpy, Matplotlib, Seaborn.
 - Change directory to the source folder.
 - Refer to project structure to run certain part of the project.
@@ -52,7 +55,8 @@ Require installation of Pandas, Sklearn, Numpy, Matplotlib, Seaborn.
     source folder.
 
 @Contributors:
-Rex Kelly 1449348
-Yi Ding 1449054
-Qinglin Huang 1616895
-Huiming Zhang 1411831
+
+- Rex Kelly 1449348
+- Yi Ding 1449054
+- Qinglin Huang 1616895
+- Huiming Zhang 1411831
