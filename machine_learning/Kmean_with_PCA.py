@@ -33,7 +33,7 @@ X_pca = sklearn_pca.fit_transform(data.drop(y_COL, axis=1))
 
 '''prints the variance explained the PCA'''
 explained_var = sklearn_pca.explained_variance_ratio_
-print(f"Variance explained: {explained_var.sum()}")
+print(f"PCA variance explained: {explained_var.sum()}")
 
 
 
